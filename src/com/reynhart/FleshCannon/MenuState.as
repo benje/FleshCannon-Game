@@ -5,8 +5,8 @@ package com.reynhart.FleshCannon
 	public class MenuState extends FlxState
 	{
 		//Some graphics and sounds
-		[Embed(source="data/menu-bg.png")] protected var MenuBg:Class;
-		[Embed(source="data/sounds/fc-menu-track.mp3")] protected var MenuSound:Class;
+		[Embed(source="../../../../assets/menu-bg.png")] protected var MenuBg:Class;
+		[Embed(source="../../../../assets/sounds/fc-menu-track.mp3")] protected var MenuSound:Class;
 
 
 		protected var _menuBg:FlxSprite;
@@ -50,7 +50,7 @@ package com.reynhart.FleshCannon
 		//Play pressed handler
 		private function onPlayPressed():void		
 		{
-			FlxG.switchState(new TutorialState());
+			FlxG.switchState(new PlayState());
 		}
 
 		//Play pressed handler

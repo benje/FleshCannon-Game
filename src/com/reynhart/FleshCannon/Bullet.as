@@ -4,8 +4,8 @@ package com.reynhart.FleshCannon
 
 	public class Bullet extends FlxSprite
 	{
-		[Embed(source="data/bullet.png")] private var ImgBullet:Class;
-		[Embed(source="data/shoot.mp3")] private var SndShoot:Class;
+		[Embed(source="../../../../assets/bullet.png")] private var ImgBullet:Class;
+		[Embed(source="../../../../assets/shoot.mp3")] private var SndShoot:Class;
 
 		public var speed:Number;
 		protected var shotVel:Number = 400;

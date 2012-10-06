@@ -5,7 +5,7 @@ package com.reynhart.FleshCannon
 	public class TutorialState extends FlxState
 	{
 		//Some graphics and sounds
-		[Embed(source="data/sounds/fc-scrolltext-track.mp3")] protected var StoryTrack:Class;
+		[Embed(source="../../../../assets/sounds/fc-scrolltext-track.mp3")] protected var StoryTrack:Class;
 
 		protected var _backButton:FlxButton;
 

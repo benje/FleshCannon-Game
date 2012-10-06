@@ -9,7 +9,7 @@ package com.reynhart.FleshCannon
 		private var player:Player;
 		private var shotTicker:Number;
 		private var shotDelay:Number;
-		[Embed(source="../../../data/spaceman.png")] protected var ImgSpaceman:Class;
+		[Embed(source="../../../../assets/spaceman.png")] protected var ImgSpaceman:Class;
 		public function PatrolEnemy(_x:int, _y:int, _facing:uint, _level:FlxTilemap, _player:Player)
 		{
 			super(_x, _y);

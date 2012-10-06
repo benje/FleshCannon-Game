@@ -5,8 +5,8 @@ package com.reynhart.FleshCannon
 
 	public class FleshBullet extends FlxSprite
 	{
-		[Embed(source="../../../data/flesh-bullet.png")] private var ImgBullet:Class;
-		[Embed(source="data/sounds/fc-cannon-shoot2.mp3")] protected var CannonShoot:Class;
+		[Embed(source="../../../../assets/flesh-bullet.png")] private var ImgBullet:Class;
+		[Embed(source="../../../../assets/sounds/fc-cannon-shoot2.mp3")] protected var CannonShoot:Class;
 
 		public var speed:Number;
 		protected var shotVel:Number = 400;

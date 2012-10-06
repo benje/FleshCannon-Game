@@ -3,7 +3,7 @@ package com.reynhart.FleshCannon
 	import org.flixel.*;
 	public class EnemyBullet extends FlxSprite
 	{
-		[Embed(source="../../../data/bullet.png")] private var ImgBullet:Class;
+		[Embed(source="../../../../assets/bullet.png")] private var ImgBullet:Class;
 		public function EnemyBullet(_x:int, _y:int, _velocity:FlxPoint, _angle:Number) 
 		{
 			super(_x, _y);

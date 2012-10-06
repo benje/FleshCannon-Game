@@ -1,6 +1,6 @@
 package com.reynhart.FleshCannon
 {
-	import com.greensock.TweenLite;
+	//import com.greensock.TweenLite;
 
 	import flash.geom.Point;
 
@@ -8,13 +8,13 @@ package com.reynhart.FleshCannon
 
 	public class Player extends FlxSprite
 	{
-		[Embed(source="data/spaceman.png")] protected var ImgSpaceman:Class;
-		[Embed(source="data/newart/runningFrames2.png")] protected var FleshPlayer:Class;
+		[Embed(source="../../../../assets/spaceman.png")] protected var ImgSpaceman:Class;
+		[Embed(source="../../../../assets/newart/runningFrames2.png")] protected var FleshPlayer:Class;
 
 		//Sounds
-		[Embed(source="data/sounds/blood-splat1.mp3")] protected var BloodSplat:Class;
-		[Embed(source="data/sounds/fc-jump1.mp3")] protected var JumpSound1:Class;
-		[Embed(source="data/sounds/impact3.mp3")] protected var ImpactSound1:Class;
+		[Embed(source="../../../../assets/sounds/blood-splat1.mp3")] protected var BloodSplat:Class;
+		[Embed(source="../../../../assets/sounds/fc-jump1.mp3")] protected var JumpSound1:Class;
+		[Embed(source="../../../../assets/sounds/impact3.mp3")] protected var ImpactSound1:Class;
 
 		protected var _jumpPower:int;
 		protected var _aim:uint;
@@ -115,82 +115,82 @@ package com.reynhart.FleshCannon
 			}
 
 			//MOVEMENT
-			acceleration.x = 0;
-
-			_aimDir.x = 0;
-			_aimDir.y = 0;
-
-			//Player facing direction default
-			if (facing == LEFT)
-			{
-				_shotHeading = "W";
-			} 
-			else if (facing == RIGHT)
-			{
-				_shotHeading = "E";
-			}
-
-			//Check multiple keys
-			if( FlxG.keys.LEFT && FlxG.keys.UP )
-			{
-				_shotHeading = "NW";
-			} 
-			else if ( FlxG.keys.LEFT && FlxG.keys.DOWN )
-			{
-				_shotHeading = "SW";
-			}
-			else if ( FlxG.keys.RIGHT && FlxG.keys.UP )
-			{
-				_shotHeading = "NE";
-			}
-			else if ( FlxG.keys.RIGHT && FlxG.keys.DOWN )
-			{
-				_shotHeading = "SE"
-			}
-			else if( FlxG.keys.LEFT )
-			{
-				facing = LEFT;
-				_aimDir.x = -1;
-				acceleration.x -= drag.x;
-				_shotHeading = "W";
-			}
-			else if(FlxG.keys.RIGHT)
-			{
-				facing = RIGHT;
-				_aimDir.x = 1;
-				acceleration.x += drag.x;
-				_shotHeading = "E";
-			} 
-			else if ( FlxG.keys.UP )
-			{
-				_aim = UP;
-				_aimDir.y = -1;
-				_shotHeading = "N";
-			}
-			else if( FlxG.keys.DOWN)
-			{
-				_aim = DOWN;
-				_aimDir.y = 1;
-				_shotHeading = "S";
-			}
-
-
-			if(FlxG.keys.justPressed("X") && !velocity.y || FlxG.keys.justPressed("SPACE") && !velocity.y)
-			{
-				//Set vertical velocity
-				velocity.y = -_jumpPower;
-
-				if ( FlxG.keys.LEFT )
-				{
-					velocity.x = -_jumpPower;
-				}
-				else if ( FlxG.keys.RIGHT )
-				{
-					velocity.x = _jumpPower;
-				}
-
-					//FlxG.play(SndJump);
-			}
+//			acceleration.x = 0;
+//
+//			_aimDir.x = 0;
+//			_aimDir.y = 0;
+//
+//			//Player facing direction default
+//			if (facing == LEFT)
+//			{
+//				_shotHeading = "W";
+//			} 
+//			else if (facing == RIGHT)
+//			{
+//				_shotHeading = "E";
+//			}
+//
+//			//Check multiple keys
+//			if( FlxG.keys.LEFT && FlxG.keys.UP )
+//			{
+//				_shotHeading = "NW";
+//			} 
+//			else if ( FlxG.keys.LEFT && FlxG.keys.DOWN )
+//			{
+//				_shotHeading = "SW";
+//			}
+//			else if ( FlxG.keys.RIGHT && FlxG.keys.UP )
+//			{
+//				_shotHeading = "NE";
+//			}
+//			else if ( FlxG.keys.RIGHT && FlxG.keys.DOWN )
+//			{
+//				_shotHeading = "SE"
+//			}
+//			else if( FlxG.keys.LEFT )
+//			{
+//				facing = LEFT;
+//				_aimDir.x = -1;
+//				acceleration.x -= drag.x;
+//				_shotHeading = "W";
+//			}
+//			else if(FlxG.keys.RIGHT)
+//			{
+//				facing = RIGHT;
+//				_aimDir.x = 1;
+//				acceleration.x += drag.x;
+//				_shotHeading = "E";
+//			} 
+//			else if ( FlxG.keys.UP )
+//			{
+//				_aim = UP;
+//				_aimDir.y = -1;
+//				_shotHeading = "N";
+//			}
+//			else if( FlxG.keys.DOWN)
+//			{
+//				_aim = DOWN;
+//				_aimDir.y = 1;
+//				_shotHeading = "S";
+//			}
+//
+//
+//			if(FlxG.keys.justPressed("X") && !velocity.y || FlxG.keys.justPressed("SPACE") && !velocity.y)
+//			{
+//				//Set vertical velocity
+//				velocity.y = -_jumpPower;
+//
+//				if ( FlxG.keys.LEFT )
+//				{
+//					velocity.x = -_jumpPower;
+//				}
+//				else if ( FlxG.keys.RIGHT )
+//				{
+//					velocity.x = _jumpPower;
+//				}
+//
+//					//FlxG.play(SndJump);
+//			}
 
 			//ANIMATION
 			if(velocity.y != 0)
