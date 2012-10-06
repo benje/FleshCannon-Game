@@ -5,13 +5,14 @@ package com.reynhart.FleshCannon
 
 	public class FleshBullet extends FlxSprite
 	{
-		[Embed(source="data/flesh-bullet.png")] private var ImgBullet:Class;
-		[Embed(source="data/shoot.mp3")] private var SndShoot:Class;
+		[Embed(source="../../../data/flesh-bullet.png")] private var ImgBullet:Class;
+		[Embed(source="data/sounds/fc-cannon-shoot2.mp3")] protected var CannonShoot:Class;
 
 		public var speed:Number;
+		protected var shotVel:Number = 400;
 		public var bulletStopped:Signal = new Signal( Number, Number );
 
-		protected var _direction:int;
+		protected var _direction:String;
 
 		public function FleshBullet(X:Number=0, Y:Number=0)
 		{
@@ -21,8 +22,8 @@ package com.reynhart.FleshCannon
 			height = 6;
 			offset.x = 1;
 			offset.y = 1;
-			drag.x = 6;
-			drag.y = 10;
+			drag.x = 600;
+			drag.y = 600;
 
 			addAnimation("up",[0]);
 			addAnimation("down",[1]);
@@ -44,63 +45,34 @@ package com.reynhart.FleshCannon
 				kill();
 
 			//Check worldbounds - if bullet leaves worldbounds replace it
-
-
-
 			//Depending on bullet direction slow down
 			switch(_direction)
 			{
 				case UP:
 					play("up");
-
-					//Check velocity is above 0 else stop (not reverse)
-					if(velocity.y < 0)
-					{
-						velocity.y += drag.y;
-					} else {
-						velocity.y = 0;
-						onDestinationArrived();
-					}
-
 					break;
-
 				case DOWN:
 					play("down");
-					velocity.y = speed;
 					break;
-
 				case LEFT:
-					//Check velocity is above 0 else stop (not reverse)
-					if(velocity.x < 0)
-					{
-						velocity.x += drag.x;
-					} else {
-						velocity.x = 0;
-						onDestinationArrived();
-					}
+					play("left");
 					break;
-
 				case RIGHT:
-					//Check velocity is above 0 else stop (not reverse)
-					if(velocity.x > 0)
-					{
-						velocity.x -= drag.x;
-					} else {
-						velocity.x = 0;
-						onDestinationArrived();
-					}
-					break
-
+					play("right");
+					break;
 				default:
 					break;
 			}
-
+			if (velocity.y == 0 && velocity.x == 0)
+			{
+				onDestinationArrived();
+			}
 		}
 
 		private function onDestinationArrived():void
 		{
 			//When stopped dispatch signal with co-ordinates
-			bulletStopped.dispatch( x, y );
+			bulletStopped.dispatch( x, y, this );
 
 			kill();
 		}
@@ -118,34 +90,56 @@ package com.reynhart.FleshCannon
 			play("poof");
 		}
 
-		public function shoot(Location:FlxPoint, Aim:uint):void
+		public function shoot(Location:FlxPoint, aimHeading:String ):void
 		{
-			_direction = Aim;
+			_direction = aimHeading;
 
-			FlxG.play(SndShoot);
+			//Play Sound
+			FlxG.play( CannonShoot, 1 );
+
 			super.reset(Location.x-width/2,Location.y-height/2);
-			//solid = true;
-			switch(Aim)
+
+			var aimAngle:Number;
+			switch( aimHeading )
 			{
-				case UP:
+				case "N":
 					play("up");
-					velocity.y = -speed;
+					aimAngle = -90;
 					break;
-				case DOWN:
-					play("down");
-					velocity.y = speed;
-					break;
-				case LEFT:
-					play("left");
-					velocity.x = -speed;
-					break;
-				case RIGHT:
+				case "NE":
 					play("right");
-					velocity.x = speed;
+					aimAngle = -45;
+					break;
+				case "E":
+					play("right");
+					aimAngle = 0;
+					break;
+				case "SE":
+					play("right");
+					aimAngle = 45;
+					break;
+				case "S":
+					play("down");
+					aimAngle = 90;
+					break;
+				case "SW":
+					play("left");
+					aimAngle = 135;
+					break;
+				case "W":
+					play("left");
+					aimAngle = 180;
+					break;
+				case "NW":
+					play("left");
+					aimAngle = -135;
 					break;
 				default:
 					break;
 			}
+			var angleAsRadians:Number = (Math.PI / 180) * aimAngle;
+			velocity.x = Math.cos( angleAsRadians ) * shotVel;
+			velocity.y = Math.sin( angleAsRadians ) * shotVel;
 		}
 
 

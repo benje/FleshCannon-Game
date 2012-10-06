@@ -1,7 +1,7 @@
 package
 {
 	import org.flixel.*;
-	import com.reynhart.FleshCannon.PlayState;
+	import com.reynhart.FleshCannon.MenuState;
 	[SWF(width="800", height="600", frameRate="30", backgroundColor="#000000")]
 	[Frame(factoryClass="Preloader")]
 
@@ -9,7 +9,7 @@ package
 	{
 		public function FleshCannon()
 		{
-			super(400,300,PlayState,2);
+			super(400,300,MenuState,2);
 			forceDebugger = true;
 		}
 	}
