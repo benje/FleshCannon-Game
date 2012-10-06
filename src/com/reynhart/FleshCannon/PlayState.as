@@ -1,8 +1,6 @@
 package com.reynhart.FleshCannon {
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
-
-	import flash.display.Graphics;
 	
 	public class PlayState extends FlxState
 	{
@@ -33,10 +31,6 @@ package com.reynhart.FleshCannon {
 		//Player weapon control
 		protected var pistol:FlxWeapon;
 		protected var level:Level1;
-		
-		
-		public var explosionRadius:int = 25;
-		public var explosionSprite:FlxSprite;
 
 
 		//Create method
@@ -118,6 +112,7 @@ package com.reynhart.FleshCannon {
 			add(level);
 			add(_player);
 			add(level.barrels);
+			add(level.explosionHitBoxes);
 			
 			FlxG.camera.setBounds(0,0,640,640,true);
 			FlxG.camera.follow(_player,FlxCamera.STYLE_PLATFORMER);
@@ -151,14 +146,19 @@ package com.reynhart.FleshCannon {
 			//Play music and flash the screen
 			FlxG.playMusic( GamePlaySound, 0.6 );
 			
-			//Create explodeSprite
-			explosionSprite = new FlxSprite();
-			drawCircle(explosionSprite, new FlxPoint(100, 200),explosionRadius, 0xff33ff33, 1, 0x4433ff33);
-			
-			add(explosionSprite);
-			
+			//Add Debug UI Buttons
+			var resetBarrelsBtn:FlxButton = new FlxButton(10, 10, "Reset barrels", resetBarrels);
+			resetBarrelsBtn.scrollFactor = new FlxPoint(0, 0);
+			add(resetBarrelsBtn);
 		}
-
+		
+		//Button callbacks
+		private function resetBarrels():void
+		{
+			trace("test");
+			
+			level.barrels.callAll("resetBarrelState");
+		}
 
 		override public function destroy():void
 		{
@@ -181,12 +181,15 @@ package com.reynhart.FleshCannon {
 			if (FlxG.mouse.justPressed())
 			{
 				pistol.fireAtMouse();
+				//TODO: ALSO FIX SPORADIC SHOOTING PROBLEM
 			}
 
 			//Run collision
 			FlxG.collide( _player, level );
 			FlxG.collide( level, _particleGroup ); //Floating blood gibs
 			FlxG.overlap( pistol.group, level.barrels, hitBarrel);
+			
+			FlxG.overlap( _player, level.explosionHitBoxes, touchingBarrel );
 			
 			
 //			FlxG.collide( enemyGroup, _level);
@@ -218,6 +221,19 @@ package com.reynhart.FleshCannon {
 			}
 			
 		}
+		
+		//If player touching barrel then apply impulse to player
+		private function touchingBarrel(_Player:FlxObject, _ExplosionSprite:FlxObject):void
+		{
+			//trace("Touching barrel!");
+			
+			//If player touching Barrel 'explosionSprite' then apply impulse to player
+			if(_Player is Player)
+			{
+				_Player.velocity.y = -750;
+				_ExplosionSprite.solid = false;
+			}
+		}
 
 		//This is an overlap callback function, triggered by the calls to FlxU.overlap().
 		protected function overlapped(Sprite1:FlxSprite,Sprite2:FlxSprite):void
@@ -237,47 +253,6 @@ package com.reynhart.FleshCannon {
 		protected function enemyBullOverlap( Sprite1:FlxSprite, Sprite2:FlxSprite ):void
 		{
 
-		}
-		
-		
-		
-		
-		
-		/**
-		 * Draw a circle to a sprite.
-		 *
-		 * @param   Sprite          The FlxSprite to draw to
-		 * @param   Center          x,y coordinates of the circle's center
-		 * @param   Radius          Radius in pixels
-		 * @param   LineColor       Outline color
-		 * @param   LineThickness   Outline thickness
-		 * @param   FillColor       Fill color
-		 */
-		public function drawCircle(Sprite:FlxSprite, Center:FlxPoint, Radius:Number = 30, LineColor:uint = 0xffffffff, LineThickness:uint = 1, FillColor:uint = 0xffffffff):void {
-		 
-		    var gfx:Graphics = FlxG.flashGfx;
-		    gfx.clear();
-		 
-		    // Line alpha
-		    var alphaComponent:Number = Number((LineColor >> 24) & 0xFF) / 255;
-		    if(alphaComponent <= 0)
-		        alphaComponent = 1;
-		 
-		    gfx.lineStyle(LineThickness, LineColor, alphaComponent);
-		 
-		    // Fill alpha
-		    alphaComponent = Number((FillColor >> 24) & 0xFF) / 255;
-		    if(alphaComponent <= 0)
-		        alphaComponent = 1;
-		 
-		    gfx.beginFill(FillColor & 0x00ffffff, alphaComponent);
-		 
-		    gfx.drawCircle(Center.x, Center.y, Radius);
-		 
-		    gfx.endFill();
-		 
-		    Sprite.pixels.draw(FlxG.flashGfxSprite);
-		    Sprite.dirty = true;
 		}
 
 

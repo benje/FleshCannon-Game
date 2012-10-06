@@ -2,30 +2,42 @@
 <project>
   <version>3.0.4</version>
   <bgColor>0x777777</bgColor>
-  <viewPos x="57" y="99"/>
+  <viewPos x="0" y="18"/>
   <firstLayersTop>false</firstLayersTop>
   <spriteEntries currentId="1"/>
   <layers>
     <group name="Group1" id="0" xScroll="1" yScroll="1" visible="true" open="true" locked="false" exports="true">
-      <maplayer name="Map1" id="0" xScroll="1" yScroll="1" x="0" y="0" width="25" height="18" tileset="tiles.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="true" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>0,34,34,34,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0</row>
-        <row>0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0</row>
-        <row>0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0</row>
-        <row>0,34,0,0,0,0,0,0,0,34,34,34,34,34,34,34,34,0,0,0,0,0,0,34,0</row>
-        <row>0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0</row>
-        <row>0,34,34,34,34,34,34,34,34,34,34,34,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,34,34,34,34,34,0,0,0,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14</row>
+      <maplayer name="Map1" id="0" xScroll="1" yScroll="1" x="0" y="0" width="25" height="30" tileset="tiles.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="true" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,31,31,31,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,31,31,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,31,31,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,31,31,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,31,31,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,31,31,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31</row>
+        <row>31,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,31</row>
         <tileProperties>
           <properties/>
           <properties/>
@@ -33,24 +45,36 @@
           <properties/>
         </tileProperties>
       </maplayer>
-      <maplayer name="Barrels" id="1" xScroll="1" yScroll="1" x="0" y="0" width="25" height="18" tileset="star.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false" selected="true">
+      <maplayer name="Barrels" id="1" xScroll="1" yScroll="1" x="0" y="0" width="25" height="30" tileset="star.png" tileWidth="16" tileHeight="16" visible="true" hasHits="false" drawIdx="1" collideIdx="1" eraseIdx="0" locked="false" exports="true" tileSpacingX="16" tileSpacingY="16" xStagger="0" tileOffsetX="0" tileOffsetY="0" isMaster="false" mapType="2d" hasHeight="false" repeatX="false" repeatY="false">
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
-        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
+        <row>0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0</row>
         <row>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</row>
         <tileProperties>
           <properties/>
@@ -58,7 +82,7 @@
       </maplayer>
     </group>
   </layers>
-  <tileMatrix currentMatrix="0" rows="3" cols="3" randomizeMiddle="true" ignoreClear="false" ignoreMapEdges="true" allowSpecialTiles="false" tileset="../../../Desktop/Building a retro Flash game in Flixel Part 1/Nutmeg Part 2 - The Map/assets/tiles.png">
+  <tileMatrix currentMatrix="0" rows="3" cols="3" randomizeMiddle="true" ignoreClear="false" ignoreMapEdges="true" allowSpecialTiles="false" tileset="tiles.png">
     <row>
       <tile>0</tile>
       <tile>0</tile>
@@ -75,78 +99,12 @@
       <tile>0</tile>
     </row>
     <specialConnections>
-      <sets>
-        <connections name="Single Inside Corners">
-          <entry green="0x1111111" red="0x10000000"/>
-          <entry green="0x11011111" red="0x100000"/>
-          <entry green="0x11111110" red="0x1"/>
-          <entry green="0x11111011" red="0x100"/>
-        </connections>
-        <connections name="Double Inside Corners">
-          <entry green="0x1011111" red="0x10100000"/>
-          <entry green="0x11011110" red="0x100001"/>
-          <entry green="0x11111010" red="0x101"/>
-          <entry green="0x1111011" red="0x10000100"/>
-        </connections>
-        <connections name="Triple Inside Corners">
-          <entry green="0x1011011" red="0x10100100"/>
-          <entry green="0x1011110" red="0x10100001"/>
-          <entry green="0x11011010" red="0x100101"/>
-          <entry green="0x1111010" red="0x10000101"/>
-        </connections>
-        <connections name="Quad Inside Corners">
-          <entry green="0x1011010" red="0x10100101"/>
-          <entry green="0x0" red="0x0"/>
-          <entry green="0x0" red="0x0"/>
-          <entry green="0x0" red="0x0"/>
-        </connections>
-        <connections name="Double Outside Corners">
-          <entry green="0x10" red="0x1011000"/>
-          <entry green="0x1000" red="0x1010010"/>
-          <entry green="0x1000000" red="0x11010"/>
-          <entry green="0x10000" red="0x1001010"/>
-        </connections>
-        <connections name="Double Outside Edges">
-          <entry green="0x1000010" red="0x11000"/>
-          <entry green="0x11000" red="0x1000010"/>
-          <entry green="0x0" red="0x0"/>
-          <entry green="0x0" red="0x0"/>
-        </connections>
-        <connections name="Opposing Double Inside Corners">
-          <entry green="0x1111110" red="0x10000001"/>
-          <entry green="0x11011011" red="0x100100"/>
-          <entry green="0x0" red="0x0"/>
-          <entry green="0x0" red="0x0"/>
-        </connections>
-      </sets>
-      <rows>
-        <row set="0">
-          <tiles>
-            <id>0</id>
-            <id>0</id>
-            <id>0</id>
-            <id>0</id>
-          </tiles>
-        </row>
-        <row set="0">
-          <tiles>
-            <id>0</id>
-            <id>0</id>
-            <id>0</id>
-            <id>0</id>
-          </tiles>
-        </row>
-      </rows>
+      <sets/>
+      <rows/>
     </specialConnections>
   </tileMatrix>
-  <tileMatrixData name="matrix1" rows="3" cols="3" randomizeMiddle="true" ignoreClear="false" ignoreMapEdges="true" allowSpecialTiles="false" tileset="../../../Desktop/Building a retro Flash game in Flixel Part 1/Nutmeg Part 2 - The Map/assets/tiles.png">
+  <tileMatrixData name="matrix1" rows="3" cols="3" randomizeMiddle="true" ignoreClear="false" ignoreMapEdges="true" allowSpecialTiles="false" tileset="tiles.png">
     <tiles>0,0,0,0,0,0,0,0,0</tiles>
-    <connections set="0">
-      <tiles>0,0,0,0</tiles>
-    </connections>
-    <connections set="0">
-      <tiles>0,0,0,0</tiles>
-    </connections>
   </tileMatrixData>
   <tileBrushes/>
   <colorSwatches/>
@@ -189,8 +147,8 @@
     <setting name="LevelName"/>
     <setting name="BaseClass">BaseLevel</setting>
     <setting name="FlixelVersion">2.5</setting>
-    <setting name="CSVDir">/Users/benje/Dev/FleshCannon/assets/levels</setting>
-    <setting name="AS3Dir">/Users/benje/Dev/FleshCannon/src</setting>
+    <setting name="CSVDir">/Users/administrator/Dev/FleshCannon/assets/levels</setting>
+    <setting name="AS3Dir">/Users/administrator/Dev/FleshCannon/src</setting>
   </exporter>
   <customPropertyTypes/>
   <guides>

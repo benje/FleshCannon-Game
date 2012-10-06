@@ -56,7 +56,7 @@ package com.reynhart.FleshCannon
 					var shotAngle:Number = FlxU.getAngle(new FlxPoint(x, y), new FlxPoint(player.x, player.y)) - 90;
 					var shotAngleR:Number = (Math.PI / 180) * shotAngle;
 					var shotSpeed:FlxPoint = new FlxPoint(Math.cos(shotAngleR) * 200, Math.sin(shotAngleR) * 200);
-					(FlxG.state as PlayState).enemyBullets.add(new EnemyBullet(x, y, shotSpeed, shotAngle));
+					//(FlxG.state as PlayState).enemyBullets.add(new EnemyBullet(x, y, shotSpeed, shotAngle));
 					shotTicker = shotDelay;
 				}
 			}

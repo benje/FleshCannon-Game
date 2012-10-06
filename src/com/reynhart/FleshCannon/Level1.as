@@ -7,14 +7,14 @@ package com.reynhart.FleshCannon
 	 */
 	public class Level1 extends FlxGroup 
 	{
-		[Embed(source="../../../../assets/mapCSV_Group1_Map1.csv", mimeType="application/octet-stream")] public var CSV_Map1:Class;
-		[Embed(source="../../../../assets/mapCSV_Group1_Map2.csv", mimeType="application/octet-stream")] public var CSV_Map2:Class;
+		[Embed(source="../../../../assets/levels/mapCSV_Group1_Map1.csv", mimeType="application/octet-stream")] public var CSV_Map1:Class;
 		[Embed(source="../../../../assets/levels/mapCSV_Group1_Barrels.csv", mimeType="application/octet-stream")] public var barrelsCSV:Class;
 		[Embed(source="../../../../assets/tiles.png")] public var Img_Map1:Class;
 		[Embed(source="../../../../assets/star.png")] public var starPNG:Class;
 		
 		public var level:FlxTilemap;
 		public var barrels:FlxGroup;
+		public var explosionHitBoxes:FlxGroup;
 		
 		public var width:int;
 		public var height:int;
@@ -35,6 +35,7 @@ package com.reynhart.FleshCannon
 			
 			add(level);
 			
+			//TODO: FIX PERFORMANCE PROBLEM WHEN ADD BARRELS
 			parseBarrels();
 		}
 		
@@ -46,6 +47,7 @@ package com.reynhart.FleshCannon
 			barrelsMap.loadMap(new barrelsCSV, starPNG, 16, 16);
 			
 			barrels = new FlxGroup();
+			explosionHitBoxes = new FlxGroup();
 			
 			for (var ty:int = 0; ty < barrelsMap.heightInTiles; ty++)
 			{
@@ -53,7 +55,12 @@ package com.reynhart.FleshCannon
 				{
 					if(barrelsMap.getTile(tx, ty) == 1)
 					{
-						barrels.add(new Barrel(tx, ty));
+						//Create hittest radius sprite
+						var explosionHitBox:ExplosionHitBox = new ExplosionHitBox(tx, ty);
+						explosionHitBoxes.add( explosionHitBox );
+					
+						//Add barrels
+						barrels.add(new Barrel(tx, ty, explosionHitBox));	
 						totalBarrels++;
 					}
 				}

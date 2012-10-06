@@ -16,7 +16,8 @@ package com.reynhart.FleshCannon
 		[Embed(source="../../../../assets/sounds/fc-jump1.mp3")] protected var JumpSound1:Class;
 		[Embed(source="../../../../assets/sounds/impact3.mp3")] protected var ImpactSound1:Class;
 
-		protected var _jumpPower:int;
+		public var _jumpPower:int;
+		
 		protected var _aim:uint;
 		protected var _bullets:FlxGroup;
 		protected var _restart:Number;
@@ -52,7 +53,7 @@ package com.reynhart.FleshCannon
 			acceleration.y = 420;
 			_jumpPower = 200;
 			maxVelocity.x = runSpeed;
-			maxVelocity.y = _jumpPower;
+			//maxVelocity.y = _jumpPower;
 			health = 100;
 
 			if( _newArt )
