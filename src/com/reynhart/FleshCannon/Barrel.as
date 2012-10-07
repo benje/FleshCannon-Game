@@ -14,36 +14,31 @@ package com.reynhart.FleshCannon {
 	{
 		[Embed(source = '../../../../assets/singlestar.png')] private var starPNG:Class;
 		
-		public var explosionRadius:int = 25;
-		public var explosionSprite:ExplosionHitBox;
-		
-		//Explosion particles
-		protected var particle:FlxParticle;
+		//References
+		protected var explosionHitBox:ExplosionHitBox;
 		protected var explodeEmitter:FlxEmitter;
 		
-		public function Barrel(X:int, Y:int, _explosionSprite:ExplosionHitBox):void
+		public function Barrel(X:int, Y:int, _explosionHitBox:ExplosionHitBox, _explodeEmitter:FlxEmitter):void
 		{
 			super(X * 16, Y * 16, starPNG);
 			
-			explosionSprite = _explosionSprite;
+			//Store reference to explosionHitBox
+			explosionHitBox = _explosionHitBox;
+			explodeEmitter = _explodeEmitter;
 			
 			solid = true;
-			
-			//Create explosion emitter & add to PlayState
-			explodeEmitter = createParticles(x, y);
-			(FlxG.state as PlayState).add(explodeEmitter);
 		}
 		
 				
 		//Plays barrel explosion and passes impulse to player
 		public function hitBarrel():void
 		{
-			trace("hitBarrel on " + this);
 			solid = false;
 			
 			//Set corresponding explosionSprite as visible
-			explosionSprite.setActive();
+			explosionHitBox.setActive();
 			
+			explodeEmitter.at(this);
 			explodeEmitter.start(true, 1.5);
 		}
 		
@@ -52,34 +47,7 @@ package com.reynhart.FleshCannon {
 		{
 			solid = true;
 		}
-		
-		
-		//Creates a particle emitter & returns FlxEmitter
-		private function createParticles(X:Number, Y:Number):FlxEmitter 
-		{
-			var part_emitter:FlxEmitter =  new FlxEmitter(X, Y, 100); 
-           	part_emitter.setXSpeed(-80,80);
-			part_emitter.setYSpeed(-80,0);
-			part_emitter.setRotation(-720,-720);
-			part_emitter.gravity = 200;
-			part_emitter.bounce = 0.5;
-			 
-			//Now it's almost ready to use, but first we need to give it some pixels to spit out!
-			//Lets fill the emitter with some white pixels
-			for (var i:int = 0; i < part_emitter.maxSize; i++) {
-				particle = new FlxParticle();
-				particle.makeGraphic(2, 2, 0xFFFFFFFF);
-				particle.visible = false; //Make sure the particle doesn't show up at (0, 0)
-				part_emitter.add(particle);
-//				particle = new FlxParticle();
-//				particle.makeGraphic(1, 1, 0xFFFFFFFF);
-//				particle.visible = false;
-//				part_emitter.add(particle);
-			}
-			
-			return part_emitter;
-        }   
-		
+
 		
 	}
 }

@@ -31,6 +31,11 @@ package com.reynhart.FleshCannon {
 		//Player weapon control
 		protected var pistol:FlxWeapon;
 		protected var level:Level1;
+		
+		public var playerImpulseVel:int = 0;
+		
+		//Mouse-aim sprite
+		private var mouseAimLine:FlxSprite;
 
 
 		//Create method
@@ -79,11 +84,13 @@ package com.reynhart.FleshCannon {
 
 			//Now that we have references to the bullets and metal bits,
 			//we can create the player object.
-			_player = new Player( 100,200,_bullets, _littleGibs, _bloodGibs, _bloodFollowerGibs );
+			_player = new Player( 100,100,_bullets, _littleGibs, _bloodGibs, _bloodFollowerGibs );
 			
 			//Add player weapon
 			pistol = new FlxWeapon("pistol", _player, "x", "y");
 			pistol.makePixelBullet(40, 2, 2, 0xff000000, 5, 6);
+			pistol.setBulletBounds( new FlxRect( 0, 0, level.width, level.height) );
+			pistol.setBulletLifeSpan(1000);
 			pistol.setBulletSpeed(400);
 			
 			//	The following are controls for the player, note that the "setFireButton" controls the speed at which bullets are fired, not the Weapon class itself
@@ -114,12 +121,21 @@ package com.reynhart.FleshCannon {
 			add(level.barrels);
 			add(level.explosionHitBoxes);
 			
-			FlxG.camera.setBounds(0,0,640,640,true);
-			FlxG.camera.follow(_player,FlxCamera.STYLE_PLATFORMER);
+			//	Don't let the camera wander off the edges of the map
+			FlxG.camera.setBounds(0, 0, level.width, level.height);
+			FlxG.camera.follow(_player, FlxCamera.STYLE_PLATFORMER);
+			
+			//	Tell flixel how big our game world is
+			FlxG.worldBounds = new FlxRect(0, 0, level.width, level.height);
 
 			//We add the bullets to the scene here,
 			//so they're drawn on top of pretty much everything
 			add(_bullets);
+			
+			//Create the Mouse aim line
+//			mouseAimLine = new FlxSprite();
+//			mouseAimLine.solid = false;
+//			add( mouseAimLine );
 
 			//Finally we are going to sort things into a couple of helper groups.
 			//We don't add these groups to the state, we just use them for collisions later!
@@ -150,6 +166,8 @@ package com.reynhart.FleshCannon {
 			var resetBarrelsBtn:FlxButton = new FlxButton(10, 10, "Reset barrels", resetBarrels);
 			resetBarrelsBtn.scrollFactor = new FlxPoint(0, 0);
 			add(resetBarrelsBtn);
+			
+			FlxG.watch(this, "playerImpulseVel");
 		}
 		
 		//Button callbacks
@@ -177,24 +195,24 @@ package com.reynhart.FleshCannon {
 		{
 			super.update();
 			
+			//Re-draw aim line function
+			drawMouseAimLine( _player );
+			
 			//If mouse clicked - fire bullet
 			if (FlxG.mouse.justPressed())
 			{
 				pistol.fireAtMouse();
-				//TODO: ALSO FIX SPORADIC SHOOTING PROBLEM
 			}
 
 			//Run collision
 			FlxG.collide( _player, level );
 			FlxG.collide( level, _particleGroup ); //Floating blood gibs
 			FlxG.overlap( pistol.group, level.barrels, hitBarrel);
-			
 			FlxG.overlap( _player, level.explosionHitBoxes, touchingBarrel );
 			
 			
 //			FlxG.collide( enemyGroup, _level);
-			//FlxG.collide( enemyGroup, _player);
-
+//			FlxG.collide( enemyGroup, _player);
 //			FlxG.overlap( _bullets, enemyGroup, overlapped );
 //			FlxG.overlap( enemyBullets, _player, overlapped );
 
@@ -218,6 +236,9 @@ package com.reynhart.FleshCannon {
 			if(barrel is Barrel)
 			{
 				(barrel as Barrel).hitBarrel();
+				
+				//kill bullet
+				pBullet.kill();
 			}
 			
 		}
@@ -225,14 +246,51 @@ package com.reynhart.FleshCannon {
 		//If player touching barrel then apply impulse to player
 		private function touchingBarrel(_Player:FlxObject, _ExplosionSprite:FlxObject):void
 		{
-			//trace("Touching barrel!");
-			
-			//If player touching Barrel 'explosionSprite' then apply impulse to player
+			//If player touching explosionHitBox then apply impulse to player
 			if(_Player is Player)
 			{
-				_Player.velocity.y = -750;
+				//Prevent player from colliding again
 				_ExplosionSprite.solid = false;
+				
+				//Apply player impulse
+				applyPlayerImpulse((_Player as Player), (_ExplosionSprite as ExplosionHitBox), 500);
 			}
+		}
+		
+		//Apply angular inpulse on player from explosion centre
+		private function applyPlayerImpulse(_Player:Player, _ExplosionHitBox:ExplosionHitBox, _impulseAmount:Number):void
+		{
+			//_Player.velocity.y = -750;
+//			var explosionOrigin:FlxPoint = new FlxPoint( (_ExplosionHitBox.x + (_ExplosionHitBox.width/2)), (_ExplosionHitBox.y + (_ExplosionHitBox.height/2)) );
+//			var playerHitBoxAngleOrigin:Number = FlxVelocity.angleBetweenPoint(_Player, explosionOrigin);
+//			//var playerHitBoxAngle:Number = FlxVelocity.angleBetween(_Player, _ExplosionHitBox);
+//			var playerImpulseVel:FlxPoint = FlxVelocity.velocityFromAngle(playerHitBoxAngleOrigin, _impulseAmount);
+			
+			playerImpulseVel = FlxVelocity.distanceToPoint(_Player, new FlxPoint( (_ExplosionHitBox.x + (_ExplosionHitBox.width/2)), (_ExplosionHitBox.y + (_ExplosionHitBox.height/2)) ));
+			//var scaledImpulse:Number = scaleRange(Number(playerImpulseVel), 0, 100, 5, 1);
+			
+			//_player.velocity.x = playerImpulseVel * 5;
+			_player.acceleration.y = 200;
+			_player.velocity.y = -(playerImpulseVel * _impulseAmount);
+			
+		}
+		
+		
+		//Re-draw mouse-aim line
+		private function drawMouseAimLine( _Player:Player ):void
+		{
+			//If line already exists then remove it
+			if( mouseAimLine != null )
+			{
+				mouseAimLine.fill(0x00000000);
+				remove(mouseAimLine);
+			}
+			
+			//Create new graphic and draw line from _Player's centre to mouse position
+			mouseAimLine = new FlxSprite(0, 0).makeGraphic(level.width, level.height, 0x0);
+			mouseAimLine.drawLine( (_Player.x + (_Player.width/2)), (_Player.y + (_Player.height/2)), FlxG.mouse.x, FlxG.mouse.y, 0xffffffff, 1 );
+			mouseAimLine.solid = false; //Not collidable!
+			add(mouseAimLine);
 		}
 
 		//This is an overlap callback function, triggered by the calls to FlxU.overlap().
@@ -253,6 +311,24 @@ package com.reynhart.FleshCannon {
 		protected function enemyBullOverlap( Sprite1:FlxSprite, Sprite2:FlxSprite ):void
 		{
 
+		}
+		
+		/**
+		 * Scale a value to a new range from an old range
+		 * @param currentValue
+		 * @param oldScaleMin
+		 * @param oldScaleMax
+		 * @param newScaleMin
+		 * @param newScaleMax
+		 * @return 
+		 * 
+		 */		
+		private function scaleRange(currentValue:Number, oldScaleMin:Number, oldScaleMax:Number, newScaleMin:Number, newScaleMax:Number):Number
+		{
+			var oldRange:Number = oldScaleMax - oldScaleMin;
+			var newValue:Number = ((currentValue/oldRange)*(newScaleMax - newScaleMin));
+			
+			return newValue;
 		}
 
 

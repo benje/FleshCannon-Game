@@ -1,5 +1,6 @@
 package com.reynhart.FleshCannon 
 {
+	import org.flixel.plugin.photonstorm.FlxDelay;
 	import org.flixel.FlxSprite;
 
 	/**
@@ -10,6 +11,8 @@ package com.reynhart.FleshCannon
 		[Embed(source='../../../../assets/explosion.png')] private var explosionPNG:Class;
 		
 		private var isFading:Boolean = false;
+		private var fadeDuration:int = 1000;
+		private var fadeTimer:FlxDelay = new FlxDelay( fadeDuration );
 		
 		public function ExplosionHitBox(X : Number = 0, Y : Number = 0) 
 		{
@@ -25,7 +28,12 @@ package com.reynhart.FleshCannon
 			this.solid = true;
 			this.visible = true;
 			
-			isFading = true;
+			//Start fadeTimer
+			fadeTimer.start();
+			
+			this.flicker( Number(fadeDuration) );
+			
+			//disFading = true;
 		}
 		
 		//When completely faded out - reset state
@@ -36,21 +44,29 @@ package com.reynhart.FleshCannon
 			this.alpha = 1;
 		}
 		
+		//Update function override
 		override public function update():void
 		{
-			//If isFading is toggled then start dropping alpha
-			if( isFading )
+			//If timer has elapsed then call setInactive
+			if (fadeTimer.hasExpired)
 			{
-				//Check alpha reached 0 - then disable
-				if (this.alpha == 0)
-				{
-					isFading = false;
-					setInactive();
-				}
-				
-				this.alpha = this.alpha - 0.015;	
+				setInactive();
 			}
+			
 		}
+//			//If isFading is toggled then start dropping alpha
+//			if( isFading )
+//			{
+//				//Check alpha reached 0 - then disable
+//				if (this.alpha == 0)
+//				{
+//					isFading = false;
+//					setInactive();
+//				}
+//				
+//				this.alpha = this.alpha - 0.015;	
+//			}
+//		}
 		
 		
 	}
